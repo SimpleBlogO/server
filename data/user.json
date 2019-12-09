@@ -1,0 +1,4 @@
+{
+	//由于涉及到密码信息，数据已经直接写入到smo.db中，
+	//user data has been put into the smo.db directly 
+}

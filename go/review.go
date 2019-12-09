@@ -1,20 +1,20 @@
 package APIGO
 
 import (
-	"net/http"
 	"github.com/boltdb/bolt"
+	"net/http"
 	//"encoding/json"
 	"fmt"
 	"strings"
 )
 
-type SubReview struct{
+type SubReview struct {
 	Username string `json:"username"`
-	ID string `json:"id"`
-	Comment string `json:"comment"`
+	ID       string `json:"id"`
+	Comment  string `json:"comment"`
 }
 
-type DBReview struct{
+type DBReview struct {
 	Reviews []SubReview `json:"reviews"`
 }
 
@@ -24,25 +24,25 @@ type Reviews struct {
 
 func GetReviewByNameAndID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-	db, err := bolt.Open("smo.db",0600,nil)
-	if err != nil{
+	db, err := bolt.Open("smo.db", 0600, nil)
+	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-	}else{
+	} else {
 		err = db.Update(func(tx *bolt.Tx) error {
-			b,_ := tx.CreateBucketIfNotExists([]byte("Review"))
+			b, _ := tx.CreateBucketIfNotExists([]byte("Review"))
 			if b != nil {
-				path := strings.Split(r.URL.Path,"/")
-				username := path[len(path) - 2]
-				id := path[len(path) - 1]
+				path := strings.Split(r.URL.Path, "/")
+				username := path[len(path)-2]
+				id := path[len(path)-1]
 				key := username + id
 				data := b.Get([]byte(key))
-				if data == nil{
+				if data == nil {
 					w.WriteHeader(http.StatusNotFound)
-				}else{
+				} else {
 					w.WriteHeader(http.StatusOK)
-					fmt.Fprintf(w,string(data))
+					fmt.Fprintf(w, string(data))
 				}
-			}else{
+			} else {
 				w.WriteHeader(http.StatusInternalServerError)
 			}
 			return nil
@@ -50,4 +50,3 @@ func GetReviewByNameAndID(w http.ResponseWriter, r *http.Request) {
 		defer db.Close()
 	}
 }
-

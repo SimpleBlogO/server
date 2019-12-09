@@ -1,9 +1,10 @@
 package APIGO
 
 import (
-	"net/http"
+	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
+	"net/http"
 )
 
 type Route struct {
@@ -33,7 +34,13 @@ func NewRouter() *mux.Router {
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello World!")
+	m := map[string]string{
+		"user":    "localhost:8080/v1/user",
+		"article": "localhost:8080/v1/article",
+		"review":  "localhost:8080/v1/review",
+		"column":  "localhost:8080/v1/column"}
+	j, _ := json.Marshal(m)
+	fmt.Fprintf(w, string(j))
 }
 
 var routes = Routes{
@@ -85,7 +92,7 @@ var routes = Routes{
 		"/v1/user/{username}",
 		DeleteUser,
 	},
-	
+
 	Route{
 		"LoginUser",
 		"GET",
@@ -113,5 +120,4 @@ var routes = Routes{
 		"/v1/user/{username}",
 		UpdateUser,
 	},
-
 }
