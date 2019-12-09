@@ -1,0 +1,24 @@
+{
+    "reviews":[
+        {
+            "username":"pmlpml",
+            "id":"53116377",
+            "comment":"PersistenceJDBCConfig 这个在哪个jar包中?"
+        },
+        {
+            "username":"pmlpml",
+            "id":"53116377",
+            "comment":"博主啊，我按照你的做法实现了一下，可是最后结果只可以redis缓存，ehcache缓存不成功，请问是什么原因呢？"
+        },
+        {
+            "username":"pmlpml",
+            "id":"70470416",
+            "comment":"博主您好，关于filter，map，scheduler 干活的顺序是不可预知的，是说fiter,map,scheduler执行顺序不是顺序执行吗？那如果这样的话，不就和想要的结果不一致了吗？"
+        },
+        {
+            "username":"pmlpml",
+            "id":"70470416",
+            "comment":"很新颖的一种编程方式，学习中。"
+        }
+    ]
+}

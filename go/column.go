@@ -8,6 +8,15 @@ import (
 	"strings"
 )
 
+type SubColumn struct{
+    Username string `json:"username"`
+    Column string `json:"column"`
+}
+
+type DBColumn struct{
+	Columns []SubColumn `json:"Columns"`
+}
+
 type Columns struct {
 	AllColumns []string `json:"AllColumns"`
 }

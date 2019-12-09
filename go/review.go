@@ -8,6 +8,16 @@ import (
 	"strings"
 )
 
+type SubReview struct{
+	Username string `json:"username"`
+	ID string `json:"id"`
+	Comment string `json:"comment"`
+}
+
+type DBReview struct{
+	Reviews []SubReview `json:"reviews"`
+}
+
 type Reviews struct {
 	AllReviews []string `json:"AllReviews"`
 }
