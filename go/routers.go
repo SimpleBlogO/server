@@ -1,4 +1,4 @@
-package 
+package APIGO
 
 import (
 	"net/http"
@@ -85,14 +85,7 @@ var routes = Routes{
 		"/v1/user/{username}",
 		DeleteUser,
 	},
-
-	Route{
-		"GetUserByName",
-		"GET",
-		"/v1/user/{username}",
-		GetUserByName,
-	},
-
+	
 	Route{
 		"LoginUser",
 		"GET",
@@ -105,6 +98,13 @@ var routes = Routes{
 		"GET",
 		"/v1/user/logout",
 		LogoutUser,
+	},
+
+	Route{
+		"GetUserByName",
+		"GET",
+		"/v1/user/{username}",
+		GetUserByName,
 	},
 
 	Route{
